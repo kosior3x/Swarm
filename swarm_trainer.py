@@ -181,11 +181,33 @@ def load_all_logs(log_dir="logs"):
     """Load all CSV logs"""
     all_data = []
 
-    # train_sim_*.csv
-    sim_files = glob.glob(os.path.join(log_dir, "train_sim_*.csv"))
-    for filepath in sim_files:
+    # Define patterns for all log types
+    patterns = [
+        "train_sim_*.csv",
+        "train_live_*.csv",
+        "train_esp32_*.csv",
+        "train_wifi_*.csv",
+        "train_main_*.csv",
+        "train_legacy_*.csv"
+    ]
+
+    all_files = []
+    for p in patterns:
+        all_files.extend(glob.glob(os.path.join(log_dir, p)))
+
+    # Deduplicate files
+    all_files = sorted(list(set(all_files)))
+
+    if not all_files:
+        logger.warning(f"No log files found matching patterns: {patterns}")
+        return pd.DataFrame()
+
+    for filepath in all_files:
         try:
-            df = pd.read_csv(filepath)
+            # Use on_bad_lines='skip' to handle malformed rows
+            df = pd.read_csv(filepath, on_bad_lines='skip')
+
+            # Map columns to internal format
             if 'dist_front' in df.columns:
                 df['dist_F'] = df['dist_front']
             if 'dist_left' in df.columns:
@@ -197,17 +219,20 @@ def load_all_logs(log_dir="logs"):
             if 'speed_right' in df.columns:
                 df['speed_R'] = df['speed_right']
 
+            # Add source file column for tracking
+            df['source_file'] = os.path.basename(filepath)
+
             all_data.append(df)
             logger.info(f"Loaded: {filepath} ({len(df)} rows)")
         except Exception as e:
             logger.warning(f"Failed: {filepath}: {e}")
 
     if not all_data:
-        logger.warning("No log files found!")
+        logger.warning("No valid data loaded from log files!")
         return pd.DataFrame()
 
     combined = pd.concat(all_data, ignore_index=True)
-    logger.info(f"Total: {len(combined)} rows from {len(all_data)} files")
+    logger.info(f"Total: {len(combined)} rows from {len(all_files)} files")
 
     return combined
 
@@ -419,12 +444,26 @@ def train_from_logs(log_dir="logs", output_path="BEHAVIORAL_BRAIN.npz", config=N
 
     # Save
     logger.info("\n[4] Saving NPZ...")
+
+    # Check old timestamp
+    old_mtime = 0
+    if os.path.exists(output_path):
+        old_mtime = os.path.getmtime(output_path)
+
     metadata = {
         'source_files': len(df['source_file'].unique()) if 'source_file' in df.columns else 0,
         'total_samples': len(df),
         'training_date': datetime.now().isoformat()
     }
     save_npz(words, vectors, categories, output_path, metadata)
+
+    # Verify update
+    if os.path.exists(output_path):
+        new_mtime = os.path.getmtime(output_path)
+        if new_mtime > old_mtime:
+            logger.info("✅ File successfully updated on disk.")
+        else:
+            logger.warning("⚠️ File timestamp did not change!")
 
     logger.info("\n" + "="*60)
     logger.info("TRAINING COMPLETE")
