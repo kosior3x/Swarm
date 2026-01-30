@@ -1,0 +1,24 @@
+{
+  "category_weights": {
+    "test": 0.7
+  },
+  "liked_connections": {
+    "test_test": 2
+  },
+  "history": [
+    {
+      "timestamp": "2026-01-24T18:50:16.033265",
+      "keywords": [
+        "test"
+      ],
+      "feedback": "y"
+    },
+    {
+      "timestamp": "2026-01-25T13:56:02.750365",
+      "keywords": [
+        "test"
+      ],
+      "feedback": "y"
+    }
+  ]
+}
