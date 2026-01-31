@@ -1,4 +1,7 @@
 {
-  "fallback": 1.1,
-  "low_confidence": 1.1
+  "navigation": 2.5,
+  "exploration": 1.5,
+  "avoidance": 2.5,
+  "low_confidence": 0.5,
+  "unknown": 1.5
 }
