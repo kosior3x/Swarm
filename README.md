@@ -1,158 +1,98 @@
-# SWARM WiFi Robot System
+# SWARM Robot System v2.1 🚀
 
-## 📁 Struktura plików
+**Project:** Autonomous Behavioral Swarm Robot
+**Version:** System 2.1 | Core 2.1 | Loader 3.1
+**Date:** 2026-01-31
+
+---
+
+## 📦 File Structure
 
 ```
-wifi_SWARM/
-├── swarm_main.py           # Główna pętla robota (uruchom to!)
-├── swarm_wifi.py           # Komunikacja WiFi/WebSocket/FTP
-├── swarm_unified_core.py   # Silnik decyzyjny ABSR
-├── swarm_simulator.py      # Symulator pygame (2 sensory)
-├── swarm_trainer.py        # Trening NPZ z logów
-├── BEHAVIORAL_BRAIN.npz    # Wytrenowany model (43 koncepty)
-├── README.md               # Ten plik
-└── esp32_firmware/
-    ├── swarm_esp32_wifi.ino  # Firmware ESP32
-    └── HARDWARE.md           # Dokumentacja połączeń
+SWARM_ROOT/
+├── loader.py               # 🚀 UNIVERSAL LAUNCHER (Run this!)
+├── reset_environment.py    # 🧹 Reset utility (Archives logs, clears memory)
+├── swarm_core.py           # 🧠 AI Decision Engine (NPZ + BLL + OL + Chaos)
+├── swarm_main.py           # 🎮 System Integrator (WiFi/Serial/Sim)
+├── swarm_trainer.py        # 🎓 Brain Trainer (Incremental Learning)
+├── swarm_simulator.py      # 🕹️ 2D Physics Simulator
+├── BEHAVIORAL_BRAIN.npz    # 💾 Trained Knowledge Base
+├── ESP32_SWARM_ROBOT.ino   # 🤖 Firmware for ESP32
+└── logs/                   # 📊 Training Data & Memory
 ```
 
 ---
 
-## 🚀 Szybki start
+## 🚀 Quick Start
 
-### 1. ESP32 - Wgraj firmware
+### 1. Python Environment (PC/Android)
 
-1. Otwórz `esp32_firmware/swarm_esp32_wifi.ino` w Arduino IDE
-2. Zainstaluj biblioteki:
-   - `ArduinoJson` (by Benoit Blanchon)
-   - `WebSockets` (by Markus Sattler)
-3. Wybierz płytkę: ESP32 Dev Module
-4. Wgraj
-
-### 2. Python - Uruchom system
+Run the **Universal Loader** to access all tools:
 
 ```bash
-# Tryb z WiFi (ESP32)
-python swarm_main.py
-
-# Symulacja (bez ESP32)
-python swarm_simulator.py
-
-# Trening modelu
-python swarm_trainer.py
+python loader.py
 ```
 
----
+**Menu Options:**
+- **[1] Run Simulator**: Train the AI in a virtual environment. Safe & fast.
+- **[2] Run Live Robot**: Connect to physical robot via WiFi or Serial.
+- **[3] Train Brain**: Learn from collected logs (Sim + Live). Updates `BEHAVIORAL_BRAIN.npz`.
+- **[7] Reset Environment**: Archive old logs and clear short-term memory for a fresh start.
 
-## 📶 Komunikacja WiFi
+### 2. ESP32 Firmware (Robot)
 
-### Architektura
-
-```
-+----------------+     WiFi      +----------------+
-|     PC/Phone   |<------------>|     ESP32      |
-|    (Python)    |  WebSocket   |   Tricycle Bot |
-+----------------+   port 81    +----------------+
-       |                              |
-       | FTP:2222                     | Sensors
-       | esprobot                     | HC-SR04 x2
-       | kamil90@                     |
-       |                              | Motors
-       +<---- CSV Logs ---------------+ 28BYJ-48 x2
-```
-
-### Sieci WiFi w ESP32
-- Slot 0: `OPPO` / `11111111`
-- Slot 1: `Redmi` / `11111111`
-- Slot 2: `SWARM_HOTSPOT` / `swarm2026`
+1. Open `ESP32_SWARM_ROBOT.ino` in Arduino IDE.
+2. Install libraries: `ArduinoJson`, `WebSockets`.
+3. Configure WiFi in the top section:
+   ```cpp
+   const char* WIFI_SSID = "YOUR_SSID";
+   const char* WIFI_PASSWORD = "YOUR_PASS";
+   ```
+4. Upload to ESP32.
 
 ---
 
-## 🔌 Połączenia hardware
+## 🧠 AI Architecture (v2.1)
 
-### Sensory HC-SR04
-| Sensor | TRIG | ECHO |
-|--------|------|------|
-| LEWY (-15°) | GPIO 12 | GPIO 14 |
-| PRAWY (+15°) | GPIO 27 | GPIO 26 |
+The system uses a **Hybrid ABSR Decision Engine**:
 
-### Silniki 28BYJ-48
-| Silnik | IN1 | IN2 | IN3 | IN4 |
-|--------|-----|-----|-----|-----|
-| LEWY | GPIO 19 | GPIO 21 | GPIO 22 | GPIO 23 |
-| PRAWY | GPIO 16 | GPIO 17 | GPIO 5 | GPIO 18 |
+1. **Safety Fuse (Rules):** Immediate reaction to critical threats (e.g. collision imminent).
+2. **NPZ Brain (Knowledge):** Matches sensor patterns to known concepts (Vector Similarity).
+3. **Online Learning (OL):** "Learns from Fuses". If a Safety Fuse saves the robot, the sensor pattern is memorized and added to the Brain.
+4. **Lorenz Chaos:** Adds pseudo-random exploration variability to prevent loops.
 
-### Bateria
-- ADC: GPIO 34 (przez dzielnik 10k/10k)
+**Incremental Learning Loop:**
+`Simulate/Drive` → `Log (Note: RULE_...)` → `Train` → `Brain Update` → `Smarter Robot`
 
 ---
 
-## 🧠 Model NPZ
+## 🔧 Hardware Setup
 
-**BEHAVIORAL_BRAIN.npz** zawiera 43 wytrenowanych konceptów:
+- **Controller:** ESP32 (WROOM-32)
+- **Motors:** 2x 28BYJ-48 Steppers + ULN2003 Drivers
+- **Sensors:** 3x HC-SR04 (Left -15°, Front 0°, Right +15°)
+- **Power:** 2S Li-Ion (7.4V) with voltage divider on GPIO 34.
 
-| Kategoria | Koncepty |
-|-----------|----------|
-| navigation | FORWARD, CORRIDOR, ASYMMETRIC, CLEAR_PATH |
-| avoidance | TURN_LEFT, TURN_RIGHT, DRIFT, WALL_AVOID |
-| emergency | ESCAPE, STOP, TRAPPED |
-| exploration | EXPLORE_LEFT, EXPLORE_RIGHT |
-
-### Ponowny trening
-
-1. Uruchom symulator i zbieraj dane
-2. Uruchom `python swarm_trainer.py`
-3. Nowy model zostanie zapisany
+**Pinout:**
+- **Left Motor:** 25, 26, 27, 14
+- **Right Motor:** 32, 33, 12, 13
+- **Sensors (Trig/Echo):** L(4,5), F(16,17), R(18,19)
 
 ---
 
-## 🎮 Sterowanie
+## 📊 Troubleshooting
 
-### Symulator (swarm_simulator.py)
-- `SPACE` - pauza
-- `R` - reset
-- `ESC` - wyjście
+**"No module named..."**
+- Select **[6] Check Dependencies** in `loader.py` to auto-install requirements.
 
-### Główny program (swarm_main.py)
-```
-1. Start autonomous mode  - Robot jedzie sam
-2. Manual control         - WASD sterowanie
-3. Request scan           - Skan 360°
-4. Check status           - Stan czujników
-5. Configure WiFi         - Ustaw sieć
-0. Exit
-```
+**ESP32 not connecting**
+- Use **[4] Diagnostics** in `loader.py` to scan for the robot.
+- Check if PC and Robot are on the same WiFi.
+
+**Brain not learning**
+- Ensure you run **[3] Train Brain** after generating logs.
+- Check `logs/` folder for `.csv` files.
 
 ---
 
-## 📊 Logi
-
-Logi zapisywane w `logs/`:
-- `train_sim_*.csv` - dane z symulacji
-- `train_live_*.csv` - dane z ESP32
-
-Format:
-```csv
-timestamp,source,dist_front,dist_left,dist_right,speed_left,speed_right,action,confidence
-```
-
----
-
-## ⚡ Rozwiązywanie problemów
-
-### ESP32 nie łączy się z WiFi
-- Sprawdź hasło w Serial Monitor
-- Spróbuj innej sieci
-
-### Python nie znajduje ESP32
-- Sprawdź czy są na tej samej sieci
-- Podaj IP ręcznie: `SwarmWiFiController(esp32_ip="192.168.x.x")`
-
-### Sensory pokazują 400
-- Nie podłączone lub złe piny
-- Sprawdź połączenia wg HARDWARE.md
-
----
-
-*SWARM Project - Behavioral AI Robot*
-*v2.0 - WiFi Edition*
+*Ready for Autonomous Operation.*

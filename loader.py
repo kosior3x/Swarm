@@ -183,43 +183,24 @@ def run_trainer():
     """Launch the NPZ trainer"""
     print(f"\n{Color.BLUE}>>> URUCHAMIANIE TRENERA MÓZGU <<<{Color.END}")
 
-    # Sprawdź dostępne opcje treningu
-    trainers = [
-        ('absr_brain_incremental.py', 'ABSR Brain (inkrementalny)'),
-        ('swarm_trainer.py', 'Podstawowy trainer'),
-    ]
+    if os.path.exists('swarm_trainer.py'):
+        print(f"\n{Color.GREEN}[*] Uruchamianie swarm_trainer.py...{Color.END}")
+        subprocess.run([sys.executable, 'swarm_trainer.py'])
+    else:
+        print(f"{Color.RED}[BŁĄD] Brak pliku swarm_trainer.py{Color.END}")
 
-    available_trainers = []
-    for file, description in trainers:
-        if os.path.exists(file):
-            available_trainers.append((file, description))
+    input("\nNaciśnij Enter aby kontynuować...")
 
-    if not available_trainers:
-        print(f"{Color.RED}[BŁĄD] Brak dostępnych trenerów{Color.END}")
-        print("Tworzę podstawowy trainer...")
-        create_basic_trainer()
-        available_trainers.append(('swarm_trainer.py', 'Podstawowy trainer'))
+def run_reset():
+    """Reset environment"""
+    print(f"\n{Color.RED}>>> RESETOWANIE ŚRODOWISKA <<<{Color.END}")
+    print("Ta operacja zarchiwizuje logi i zresetuje pamięć krótkotrwałą.")
 
-    print(f"\n{Color.CYAN}Dostępne trenery:{Color.END}")
-    for i, (file, desc) in enumerate(available_trainers, 1):
-        print(f"  {Color.CYAN}{i}.{Color.END} {desc} ({file})")
-    print(f"  {Color.CYAN}0.{Color.END} Powrót")
-
-    choice = input(f"\n{Color.BOLD}Wybierz trener [0-{len(available_trainers)}]: {Color.END}").strip()
-
-    if choice == '0':
-        return
-
-    try:
-        idx = int(choice) - 1
-        if 0 <= idx < len(available_trainers):
-            file, desc = available_trainers[idx]
-            print(f"\n{Color.GREEN}[*] Uruchamianie {desc}...{Color.END}")
-            subprocess.run([sys.executable, file])
+    if input("Czy na pewno? (y/n): ").lower() == 'y':
+        if os.path.exists('reset_environment.py'):
+            subprocess.run([sys.executable, 'reset_environment.py'])
         else:
-            print(f"{Color.RED}[!] Nieprawidłowy wybór{Color.END}")
-    except ValueError:
-        print(f"{Color.RED}[!] Wprowadź numer{Color.END}")
+            print(f"{Color.RED}[BŁĄD] Brak pliku reset_environment.py{Color.END}")
 
     input("\nNaciśnij Enter aby kontynuować...")
 
@@ -435,10 +416,11 @@ def main_menu():
         print(f"  {Color.CYAN}4.{Color.END} DIAGNOSTYKA SYSTEMU     {Color.BLUE}(Sprawdzenie stanu){Color.END}")
         print(f"  {Color.CYAN}5.{Color.END} TEST INTUICJI ABSR      {Color.MAGENTA}(Eksperymentalne){Color.END}")
         print(f"  {Color.CYAN}6.{Color.END} SPRAWDŹ ZALEŻNOŚCI")
+        print(f"  {Color.RED}7. RESET ŚRODOWISKA         {Color.RED}(Archiwizacja/Clean){Color.END}")
         print(f"  {Color.RED}0. WYJŚCIE{Color.END}")
 
         try:
-            choice = input(f"\n{Color.BOLD}Wybierz opcję [0-6]: {Color.END}").strip()
+            choice = input(f"\n{Color.BOLD}Wybierz opcję [0-7]: {Color.END}").strip()
 
             if choice == '1':
                 run_simulator()
@@ -453,6 +435,8 @@ def main_menu():
             elif choice == '6':
                 check_dependencies()
                 input("\nNaciśnij Enter aby kontynuować...")
+            elif choice == '7':
+                run_reset()
             elif choice == '0':
                 print(f"\n{Color.GREEN}Do widzenia! 🚀{Color.END}")
                 break
