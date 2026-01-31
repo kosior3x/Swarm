@@ -1,0 +1,3 @@
+timestamp,source,dist_front,dist_left,dist_right,speed_left,speed_right,action,confidence,decision_source,cycle,steps_l,steps_r,notes
+2026-01-31T16:35:28.915592,SIM,264.4,270.4,258.4,80,80,FORWARD,nan,VAGUE,1,0,0,FORWARD_UNCERTAIN x:525;y:925
+CERTAIN
