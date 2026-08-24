@@ -1,0 +1,56 @@
+name: PCP Remote Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: "PCP job UUID / idempotency key"
+        required: true
+        type: string
+      target:
+        description: "PCP build target"
+        required: true
+        type: choice
+        options: [uno, esp32, esp32s3, esp8266, rpipico, rpipico2]
+      sketch_path:
+        description: "Repository-relative path to Arduino sketch directory"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pcp-build-${{ inputs.job_id }}
+  cancel-in-progress: true
+
+env:
+  ARDUINO_UPDATER_ENABLE_NOTIFICATION: "false"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: arduino/setup-arduino-cli@v2
+        with:
+          version: "1.x"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.arduino15
+          key: pcp-arduino-${{ runner.os }}-${{ inputs.target }}-${{ hashFiles('scripts/github/pcp_build_worker.sh') }}
+          restore-keys: pcp-arduino-${{ runner.os }}-${{ inputs.target }}-
+      - name: Build PCP target
+        shell: bash
+        run: |
+          chmod +x scripts/github/pcp_build_worker.sh
+          scripts/github/pcp_build_worker.sh "${{ inputs.job_id }}" "${{ inputs.target }}" "${{ inputs.sketch_path }}"
+      - name: Upload PCP build result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: pcp-build-${{ inputs.job_id }}-${{ inputs.target }}
+          path: .pcp-build/${{ inputs.job_id }}/
+          if-no-files-found: error
+          retention-days: 3
