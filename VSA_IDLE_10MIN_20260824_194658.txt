@@ -1,0 +1,218 @@
+==============================================================================
+ VSA 10 MINUTE IDLE RESOURCE PROFILE
+ READ ONLY
+==============================================================================
+START=2026-08-24T19:47:00.544201+02:00
+DURATION_SECONDS=600
+INTERVAL_SECONDS=30
+USER_UID=1540
+
+=== BASELINE ===
+PROCESS_COUNT=17
+RSS_MB=690.2
+THREADS=55
+SEMANTIC_VISSOL=1
+SEMANTIC_DRDAMSON=1
+REPRESENTATION_VISSOL=1
+REPRESENTATION_DRDAMSON=1
+SUPERVISOR=0
+VISSOL=1
+DRDAMSON=1
+XTEST=1
+ALEK=1
+GATEWAY=1
+SMP=1
+SUPER_ADMIN=1
+ORCHESTRATOR=1
+
+=== SAMPLING ===
+
+SAMPLE=1/20 TIME=19:47:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.7 USER_CPU_PCT=1.10 HOST_LOAD1=9.83
+NEW_PIDS=0 GONE_PIDS=1 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=3956565 CPU_PCT=0.17 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/representation_worker.py...
+  PID=3955479 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/semantic_worker.py --daemon
+  PID=4137989 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=3956354 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/tools/representation_worker.py -...
+  PID=1464881 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+
+SAMPLE=2/20 TIME=19:48:00
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.7 USER_CPU_PCT=0.57 HOST_LOAD1=9.36
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=193911 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=4138070 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=4137989 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=4137957 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn smp:app --host 127.0.0.1 --port 8000
+  PID=1464881 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+
+SAMPLE=3/20 TIME=19:48:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.7 USER_CPU_PCT=0.80 HOST_LOAD1=10.52
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4137989 CPU_PCT=0.17 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=4138070 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=4138050 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4137957 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn smp:app --host 127.0.0.1 --port 8000
+  PID=194735 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+
+SAMPLE=4/20 TIME=19:49:00
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.7 USER_CPU_PCT=0.53 HOST_LOAD1=10.27
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4138050 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4138070 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=4137989 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=1464881 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=194735 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+
+SAMPLE=5/20 TIME=19:49:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=1.47 HOST_LOAD1=9.92
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4138050 CPU_PCT=0.30 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=3956565 CPU_PCT=0.17 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/representation_worker.py...
+  PID=3955479 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/semantic_worker.py --daemon
+  PID=1464881 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=4138070 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+
+SAMPLE=6/20 TIME=19:50:00
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=0.57 HOST_LOAD1=9.73
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=24711 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=4138070 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=4138050 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4137989 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=4137957 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn smp:app --host 127.0.0.1 --port 8000
+
+SAMPLE=7/20 TIME=19:50:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=0.67 HOST_LOAD1=9.92
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4137989 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=4138070 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=1464881 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=4138050 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4137957 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn smp:app --host 127.0.0.1 --port 8000
+
+SAMPLE=8/20 TIME=19:51:00
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=0.60 HOST_LOAD1=9.21
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4138070 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=4138050 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4137989 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=4137957 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn smp:app --host 127.0.0.1 --port 8000
+  PID=1464881 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+
+SAMPLE=9/20 TIME=19:51:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=0.97 HOST_LOAD1=8.66
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=3956565 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/representation_worker.py...
+  PID=3955479 CPU_PCT=0.13 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/tools/semantic_worker.py --daemon
+  PID=4137989 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+  PID=3956354 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/tools/representation_worker.py -...
+  PID=4138050 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+
+SAMPLE=10/20 TIME=19:52:00
+PROCESS_COUNT=16 THREADS=54 RSS_MB=631.8 USER_CPU_PCT=0.63 HOST_LOAD1=9.75
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
+  PID=193911 RSS_MB=59.9 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=194735 RSS_MB=57.5 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+TOP_CPU_INTERVAL:
+  PID=4138070 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 orchestrator.py
+  PID=194735 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 9205
+  PID=193911 CPU_PCT=0.10 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn app.main:app --host 127.0.0.1 --port 8110
+  PID=4138050 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=4137989 CPU_PCT=0.07 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn gateway:app --host 127.0.0.1 --port 9000
+
+SAMPLE=11/20 TIME=19:52:30
+PROCESS_COUNT=16 THREADS=54 RSS_MB=632.3 USER_CPU_PCT=0.77 HOST_LOAD1=10.22
+NEW_PIDS=0 GONE_PIDS=0 HEAVY_SLOT=FREE
+WORKERS SV=1 SD=1 RV=1 RD=1 SUP=0
+CORE VISSOL=1 DRDAMSON=1 XTEST=1 ALEK=1 GW=1 SMP=1 ADMIN=1 ORCH=1
+TOP_RSS:
+  PID=4138050 RSS_MB=116.2 CMD=/opt/alt/python39/bin/python3.9 -m uvicorn super_admin.app:app --host 127.0.0.1 --port 9101
+  PID=1464881 RSS_MB=79.8 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/vissol/system/run_tenant_exact.py
+  PID=24711 RSS_MB=68.6 CMD=/opt/alt/python39/bin/python3.9 ~/domains/srv.vis-sol.pl/public_html/panels/drdamson/system/run_tenant_exact.py
